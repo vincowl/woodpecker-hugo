@@ -4,7 +4,9 @@ RUN apk add --no-cache git build-base && \
   git clone --branch v0.121.2  https://github.com/gohugoio/hugo.git && \
   cd hugo/ && \
   CGO_ENABLED=0 go build -ldflags "-s -w -X github.com/gohugoio/hugo/common/hugo.buildDate=$(date +%Y-%m-%dT%H:%M:%SZ) -X github.com/gohugoio/hugo/common/hugo.commitHash=$(git rev-parse --short HEAD)" -o /tmp/hugo . && \
-  CGO_ENABLED=1 go build -tags extended -ldflags "-s -w -X github.com/gohugoio/hugo/common/hugo.buildDate=$(date +%Y-%m-%dT%H:%M:%SZ) -X github.com/gohugoio/hugo/common/hugo.commitHash=$(git rev-parse --short HEAD)" -o /tmp/hugo-extended
+  CGO_ENABLED=1 go build -tags extended -ldflags "-s -w -X github.com/gohugoio/hugo/common/hugo.buildDate=$(date +%Y-%m-%dT%H:%M:%SZ) -X github.com/gohugoio/hugo/common/hugo.commitHash=$(git rev-parse --short HEAD)" -o /tmp/hugo-extended  . && \
+  cd .. && git clone https://github.com/bschuele/drone-hugo.git && \
+  GOOS=linux GOARCH=amd64 CGO_ENABLED=0 GO111MODULE=on go build -v -a -tags netgo -o /tmp/drone-hugo
 
 FROM plugins/base:linux-amd64
 
@@ -20,6 +22,6 @@ ENV PLUGIN_HUGO_SHIPPED_VERSION=0.121.2
 
 COPY --from=build /tmp/hugo /bin/hugo
 COPY --from=build /tmp/hugo-extended /bin/hugo-extended
+COPY --from=build /tmp/drone-hugo /bin/drone-hugo
 
-ADD release/linux/amd64/drone-hugo /bin/
 ENTRYPOINT ["/bin/drone-hugo"]
