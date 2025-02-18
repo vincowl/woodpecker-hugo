@@ -1,12 +1,12 @@
 ---
-version: '1.1'
-date: 2024-02-18T00:00:00+00:00
-title: Hugo
-author: [ cbrgm, maurerle ]
+name: Hugo
+author: cbrgm, maurerle
 tags: [ tool, hugo, generation, static ]
-logo: gohugo.svg
+logo: https://raw.githubusercontent.com/gohugoio/gohugoioTheme/refs/heads/master/static/images/icon-h/hugo-h-1.svg
 repo: maurerle/woodpecker-hugo
-image: plugins/hugo
+image: ghcr.io/maurerle/woodpecker-hugo
+containerImage: ghcr.io/maurerle/woodpecker-hugo
+url: https://github.com/maurerle/woodpecker-hugo
 ---
 
 The Hugo plugin automatically generates static web page files, which can be published afterwards!
