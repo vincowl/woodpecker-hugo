@@ -1,15 +1,15 @@
 repository:
-  name: drone-hugo
-  description: Drone plugin to publish Hugo generated websites
-  homepage: http://plugins.drone.io/drone-plugins/drone-hugo
-  topics: drone, drone-plugin
+  name: woodpecker-hugo
+  description: woodpecker plugin to publish Hugo generated websites
+  homepage: https://woodpecker-ci.org/plugins/woodpecker-hugo
+  topics: woodpecker, woodpecker-plugin
 
   private: false
   has_issues: true
   has_wiki: false
   has_downloads: false
 
-  default_branch: master
+  default_branch: main
 
   allow_squash_merge: true
   allow_merge_commit: true
@@ -53,7 +53,7 @@ teams:
     permission: push
 
 branches:
-  - name: master
+  - name: main
     protection:
       required_pull_request_reviews:
         required_approving_review_count: 1
@@ -66,7 +66,7 @@ branches:
       required_status_checks:
         strict: true
         contexts:
-          - continuous-integration/drone/pr
+          - continuous-integration/woodpecker/pr
       enforce_admins: false
       restrictions:
         users: []

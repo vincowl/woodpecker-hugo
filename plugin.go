@@ -6,7 +6,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/drone-plugins/drone-hugo/download"
+	"github.com/woodpecker-plugins/woodpecker-hugo/download"
 )
 
 type (
@@ -46,7 +46,7 @@ func (p Plugin) Exec() error {
 	}
 
 	// Check if buildIn plugin version equals
-	// plugin version declared in drone.yml
+	// plugin version declared in .woodpecker.yml
 	if !versionsEqual(p.BuildInVersion, p.Config.Version) {
 		version := p.Config.Version
 

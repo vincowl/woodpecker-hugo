@@ -9,7 +9,7 @@ pool:
 
 steps:
   - name: lint
-    image: golang:1.19
+    image: golang:1.24
     pull: always
     commands:
       - go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
@@ -19,7 +19,7 @@ steps:
       - name: gopath
         path: "/go"
   - name: test
-    image: golang:1.19
+    image: golang:1.24
     commands:
       - go test -cover ./...
     volumes:
@@ -30,7 +30,7 @@ volumes:
     temp: {}
 trigger:
   ref:
-    - refs/heads/master
+    - refs/heads/main
     - refs/tags/**
     - refs/pull/**
 
@@ -46,7 +46,7 @@ pool:
 
 steps:
   - name: environment
-    image: golang:1.19
+    image: golang:1.24
     pull: always
     environment:
       CGO_ENABLED: "0"
@@ -54,15 +54,15 @@ steps:
       - go version
       - go env
   - name: build
-    image: golang:1.19
+    image: golang:1.24
     environment:
       CGO_ENABLED: "0"
     commands:
-      - go build -v -ldflags "-X main.version=" -a -tags netgo -o release/linux/amd64/drone-hugo .
+      - go build -v -ldflags "-X main.version=" -a -tags netgo -o release/linux/amd64/woodpecker-hugo .
   - name: docker
     image: plugins/docker
     settings:
-      dockerfile: docker/Dockerfile.linux.amd64
+      dockerfile: docker/Dockerfile
       repo: plugins/hugo
       username:
         from_secret: docker_username
@@ -74,7 +74,7 @@ depends_on:
   - testing
 trigger:
   ref:
-    - refs/heads/master
+    - refs/heads/main
     - refs/tags/**
     - refs/pull/**
 
@@ -90,7 +90,7 @@ pool:
 
 steps:
   - name: environment
-    image: golang:1.19
+    image: golang:1.24
     pull: always
     environment:
       CGO_ENABLED: "0"
@@ -98,11 +98,11 @@ steps:
       - go version
       - go env
   - name: build
-    image: golang:1.19
+    image: golang:1.24
     environment:
       CGO_ENABLED: "0"
     commands:
-      - go build -v -ldflags "-X main.version=" -a -tags netgo -o release/linux/arm64/drone-hugo .
+      - go build -v -ldflags "-X main.version=" -a -tags netgo -o release/linux/arm64/woodpecker-hugo .
   - name: docker
     image: plugins/docker
     settings:
@@ -118,7 +118,7 @@ depends_on:
   - testing
 trigger:
   ref:
-    - refs/heads/master
+    - refs/heads/main
     - refs/tags/**
     - refs/pull/**
 
@@ -134,7 +134,7 @@ pool:
 
 steps:
   - name: environment
-    image: golang:1.19
+    image: golang:1.24
     pull: always
     environment:
       CGO_ENABLED: "0"
@@ -142,11 +142,11 @@ steps:
       - go version
       - go env
   - name: build
-    image: golang:1.19
+    image: golang:1.24
     environment:
       CGO_ENABLED: "0"
     commands:
-      - go build -v -ldflags "-X main.version=" -a -tags netgo -o release/windows/amd64/drone-hugo.exe .
+      - go build -v -ldflags "-X main.version=" -a -tags netgo -o release/windows/amd64/woodpecker-hugo.exe .
   - name: docker
     image: plugins/docker
     settings:
@@ -162,13 +162,13 @@ steps:
       purge: false
     when:
       ref:
-        - refs/heads/master
+        - refs/heads/main
         - refs/tags/**
 depends_on:
   - testing
 trigger:
   ref:
-    - refs/heads/master
+    - refs/heads/main
     - refs/tags/**
     - refs/pull/**
 
@@ -184,7 +184,7 @@ pool:
 
 steps:
   - name: environment
-    image: golang:1.19
+    image: golang:1.24
     pull: always
     environment:
       CGO_ENABLED: "0"
@@ -192,11 +192,11 @@ steps:
       - go version
       - go env
   - name: build
-    image: golang:1.19
+    image: golang:1.24
     environment:
       CGO_ENABLED: "0"
     commands:
-      - go build -v -ldflags "-X main.version=" -a -tags netgo -o release/windows/amd64/drone-hugo.exe .
+      - go build -v -ldflags "-X main.version=" -a -tags netgo -o release/windows/amd64/woodpecker-hugo.exe .
   - name: docker
     image: plugins/docker
     settings:
@@ -212,13 +212,13 @@ steps:
       purge: false
     when:
       ref:
-        - refs/heads/master
+        - refs/heads/main
         - refs/tags/**
 depends_on:
   - testing
 trigger:
   ref:
-    - refs/heads/master
+    - refs/heads/main
     - refs/tags/**
     - refs/pull/**
 
@@ -250,5 +250,5 @@ depends_on:
   - windows-ltsc2022
 trigger:
   ref:
-    - refs/heads/master
+    - refs/heads/main
     - refs/tags/**
