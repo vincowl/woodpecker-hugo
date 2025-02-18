@@ -1,6 +1,7 @@
 ---
 name: Hugo
 author: cbrgm, maurerle
+description: Use Hugo static site generator to create HTML output
 tags: [ tool, hugo, generation, static ]
 logo: https://raw.githubusercontent.com/gohugoio/gohugoioTheme/refs/heads/master/static/images/icon-h/hugo-h-1.svg
 repo: maurerle/woodpecker-hugo
