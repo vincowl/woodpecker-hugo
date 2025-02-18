@@ -17,7 +17,7 @@ The example below demonstrates how you can use the plugin to automatically creat
 ```yml
 steps:
 - name: build
-  image: plugins/hugo
+  image: ghcr.io/maurerle/woodpecker-hugo
   settings:
     hugo_version: 0.144
 ```
@@ -29,7 +29,7 @@ You can customize the paths for e. g. the theme, layout, content directory and o
 ```yml
 steps:
 - name: build
-  image: plugins/hugo
+  image: ghcr.io/maurerle/woodpecker-hugo
   settings:
     hugo_version: 0.144
     url: https://foo.com
@@ -48,7 +48,7 @@ You can also define a base URL directly in the pipeline, which is used when gene
 ```yml
 steps:
 - name: build
-  image: plugins/hugo
+  image: ghcr.io/maurerle/woodpecker-hugo
   settings:
     hugo_version: 0.144
     url: https://foo.com
@@ -72,7 +72,7 @@ You can set the `buildDrafts`, `buildExpired`, `buildFuture` settings to configu
 ```yml
 steps:
 - name: build
-  image: plugins/hugo
+  image: ghcr.io/maurerle/woodpecker-hugo
   settings:
     hugo_version: 0.144
     url: https://foo.com
@@ -95,7 +95,7 @@ Here is a short example of how to define a pipeline that automatically generates
 ```yml
 steps:
 - name: build
-  image: ghcr.io/maurerle/woodpecker-hugo:v1.1.0
+  image: ghcr.io/maurerle/woodpecker-hugo
   settings:
     hugo_version: 0.144
     pull: always
