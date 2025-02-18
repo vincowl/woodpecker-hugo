@@ -20,10 +20,7 @@ steps:
   image: plugins/hugo
   settings:
     hugo_version: 0.144
-    validate: true
 ```
-
-`validate` allows you to check your configuration file for errors before generating the files.
 
 #### Customize source, output, theme, config, layout OR content directory paths
 
@@ -42,7 +39,6 @@ steps:
 +   output: path/to/public
 +   source: path/to/source
 +   theme: path/themes/THEMENAME/
-    validate: true
 ```
 
 #### Set hostname (and path) to the root
@@ -63,7 +59,6 @@ steps:
     source: path/to/source
     theme: path/themes/THEMENAME/
 +   url: https://foo.com
-    validate: true
 ```
 
 #### Build sites and include expired, drafts or future content
@@ -91,7 +86,6 @@ steps:
 +   buildDrafts: true
 +   buildExpired: true
 +   buildFuture: true
-    validate: true
 ```
 
 #### **Example**: Generate Hugo static files and publish them to remote directory using scp
@@ -106,7 +100,6 @@ steps:
     hugo_version: 0.144
     pull: always
     url: https://foo.com
-    validate: true
 
 - name: deploy
   image: appleboy/drone-scp
@@ -159,9 +152,6 @@ theme
 
 url
 : hostname (and path) to the root
-
-validate
-: validate config file before generation
 
 # Contributing
 

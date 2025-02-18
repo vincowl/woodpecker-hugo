@@ -20,7 +20,6 @@ type (
 		Drafts   bool
 		Expired  bool
 		Future   bool
-		Validate bool
 		Cache    string
 		Config   string
 		Content  string
@@ -63,22 +62,8 @@ func (p Plugin) Exec() error {
 		hugoExecutable = executable
 	}
 
-	if p.Config.Validate {
-		cmds = append(cmds, commandValidate(p.Config))
-	}
-
 	cmds = append(cmds, commandBuild(p.Config))
 	return execAll(cmds)
-}
-
-func commandValidate(config Config) *exec.Cmd {
-	args := []string{"check"}
-
-	if config.Config != "" {
-		args = append(args, "--config", config.Config)
-	}
-
-	return exec.Command(hugoExecutable, args...)
 }
 
 func commandBuild(config Config) *exec.Cmd {
