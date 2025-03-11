@@ -105,6 +105,7 @@ func run(c *cli.Context) error {
 			Drafts:   c.Bool("drafts"),
 			Expired:  c.Bool("expired"),
 			Future:   c.Bool("future"),
+			Cache:	  c.String("cache"),
 			Config:   c.String("config"),
 			Content:  c.String("content"),
 			Layout:   c.String("layout"),
